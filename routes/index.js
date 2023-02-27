@@ -25,6 +25,7 @@ router.get('/', function (req, res) {
         res.render('login_successful.ejs', {
             profile: session.profile,
             first_name: session.first_name,
+            last_name: session.last_name
         })
     } else {
         res.render('index.ejs', { title: 'Home' })
@@ -58,6 +59,7 @@ router.get('/callback', async (req, res) => {
 
         session.first_name = profile.profile.first_name
         session.profile = json_profile
+        session.last_name = profile.profile.last_name
         session.isloggedin = true
 
         res.redirect('/')
@@ -71,6 +73,7 @@ router.get('/logout', async (req, res) => {
         session.first_name = null
         session.profile = null
         session.isloggedin = null
+        session.last_name = null
 
         res.redirect('/')
     } catch (error) {
